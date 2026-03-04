@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dppbnovm5v07u"]
+
+[ext_resource type="Script" uid="uid://df0suigadmmds" path="res://scripts/path_follow.gd" id="1_cg7v7"]
+[ext_resource type="Shader" uid="uid://bpo0xiavy1o25" path="res://shaders/path_follow_particles.gdshader" id="1_qwgkx"]
+[ext_resource type="Texture2D" uid="uid://bynd11pjiayvm" path="res://icon.svg" id="2_fm1sq"]
+
+[sub_resource type="Curve" id="Curve_7b5t0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.38239, 0.555636), 0.0, 0.0, 0, 0, Vector2(0.640252, 0.725818), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.00125508, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ergp"]
+width = 512
+curve = SubResource("Curve_7b5t0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jfy1"]
+shader = ExtResource("1_qwgkx")
+shader_parameter/direction = Vector3(0, 1, 0)
+shader_parameter/spread = 45.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 25.0
+shader_parameter/initial_linear_velocity_max = 45.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 0.15
+shader_parameter/scale_max = 0.25
+shader_parameter/color_value = Color(0.530963, 0.525063, 0.656759, 0.796078)
+shader_parameter/random_r = 0.0
+shader_parameter/random_g = 0.5
+shader_parameter/random_b = 0.2
+shader_parameter/random_a = 1.0
+shader_parameter/path = PackedVector2Array(474, 276, 7, 824, -307, 243, 109, -436, -121, -675, -527, -644, -664, -27, -1621, -194, -1043, -711)
+shader_parameter/path_length = 9
+shader_parameter/path_follow_speed = 155.0
+shader_parameter/path_follow_stiffness = 2.5
+shader_parameter/point_distance_threshold = 50.0
+shader_parameter/use_random_seed = true
+shader_parameter/noise_influence_min = -0.15
+shader_parameter/noise_influence_max = 0.15
+shader_parameter/noise_frequency = 0.005
+shader_parameter/noise_persistence = 5.0
+shader_parameter/noise_lacunarity = 0.1
+shader_parameter/noise_speed = Vector2(1, 0)
+shader_parameter/alpha_curve = SubResource("CurveTexture_5ergp")
+
+[node name="PathFollow" type="Node2D"]
+script = ExtResource("1_cg7v7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(385, -128)
+amount = 25000
+texture = ExtResource("2_fm1sq")
+lifetime = 40.0
+visibility_rect = Rect2(-1600, -100, 200, 200)
+process_material = SubResource("ShaderMaterial_8jfy1")
+
+[node name="Path" type="Line2D" parent="."]
+position = Vector2(1, 2)
+points = PackedVector2Array(474, 276, 7, 824, -307, 243, 109, -436, -121, -675, -527, -644, -664, -27, -1621, -194, -1043, -711)
+default_color = Color(0.45098, 0.396078, 0.54902, 0.180392)

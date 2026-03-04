@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6trgh5kg7pi0"]
+
+[ext_resource type="Shader" uid="uid://kvhnkm7l8gku" path="res://shaders/noise_spread.gdshader" id="1_b182b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tyhmf"]
+shader = ExtResource("1_b182b")
+shader_parameter/direction = Vector3(-1, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 25.0
+shader_parameter/initial_linear_velocity_max = 25.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_ring_radius = 1000.0
+shader_parameter/emission_ring_inner_radius = 0.0
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 10.0
+shader_parameter/scale_max = 20.0
+shader_parameter/color_value = Color(0.909795, 0.492343, 0.380798, 0.435294)
+shader_parameter/random_r = 0.5
+shader_parameter/random_g = 1.0
+shader_parameter/random_b = 0.0
+shader_parameter/random_a = 1.0
+shader_parameter/path = PackedVector2Array()
+shader_parameter/path_length = 0
+shader_parameter/path_follow_speed = 0.0
+shader_parameter/path_follow_stiffness = 0.0
+shader_parameter/point_distance_threshold = 1.0
+shader_parameter/use_random_seed = false
+shader_parameter/noise_influence_min = -3.0
+shader_parameter/noise_influence_max = 5.0
+shader_parameter/noise_frequency = 0.005
+shader_parameter/noise_persistence = 0.0
+shader_parameter/noise_lacunarity = 0.0
+shader_parameter/noise_speed = Vector2(0, 0)
+
+[node name="NoiseSpread" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 100000
+lifetime = 7.0
+fixed_fps = 120
+process_material = SubResource("ShaderMaterial_tyhmf")

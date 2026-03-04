@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfhom8p7knqdf"]
+
+[ext_resource type="Script" uid="uid://biiw68owj7h0m" path="res://scripts/target_follow.gd" id="1_kfyhi"]
+[ext_resource type="Shader" uid="uid://cwpso87wc1niw" path="res://shaders/target_follow.gdshader" id="2_yocsu"]
+[ext_resource type="Texture2D" uid="uid://bynd11pjiayvm" path="res://icon.svg" id="3_i6vae"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwolr"]
+shader = ExtResource("2_yocsu")
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 150.0
+shader_parameter/initial_linear_velocity_max = 175.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_ring_radius = 100.0
+shader_parameter/emission_ring_inner_radius = 0.0
+shader_parameter/gravity = Vector3(0, 20, 0)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 0.25
+shader_parameter/scale_max = 0.55
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/random_a = 0.25
+shader_parameter/target_pos = Vector2(619.18, -27.1616)
+shader_parameter/target_mode_active = true
+shader_parameter/min_target_distance = 100.0
+shader_parameter/target_follow_speed = 500.0
+shader_parameter/target_follow_stiffness = 3.0
+shader_parameter/use_random_seed = true
+shader_parameter/noise_influence_min = -0.15
+shader_parameter/noise_influence_max = 0.15
+shader_parameter/noise_frequency = 0.005
+shader_parameter/noise_persistence = 5.0
+shader_parameter/noise_lacunarity = 0.1
+shader_parameter/noise_speed = Vector2(1, 0)
+
+[node name="TargetFollow" type="Node2D"]
+script = ExtResource("1_kfyhi")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1)
+amount = 150
+texture = ExtResource("3_i6vae")
+lifetime = 3.0
+process_material = SubResource("ShaderMaterial_vwolr")
