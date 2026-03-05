@@ -15,13 +15,27 @@ There are three examples included in this project:
 
 Demonstrates the perlin noise effect, and also random RGB and alpha.
 
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/d629ec8c-8ea2-4bc4-b45c-bcb21a4929a1" width="40%" alt="path_follow">
+</div>
+
 ### path_follow.tscn
 
+
 Showcases the particle shader's path following behaviour, with some perlin noise for a bit of randomness.
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/a98122e6-38c1-401e-bea1-7ec51d87c4c6" width="40%" alt="path_follow">
+</div>
 
 ### target_follow.tscn
 
 Shows the particles following a target set to the user's mouse position.
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/2fd80290-b0d9-4eae-98c7-e492190f3db9" width="40%" alt="path_follow">
+</div>
 
 ## How to Use
 
