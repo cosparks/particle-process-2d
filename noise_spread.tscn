@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6trgh5kg7pi0"]
+[gd_scene format=3 uid="uid://b6trgh5kg7pi0"]
 
 [ext_resource type="Shader" uid="uid://kvhnkm7l8gku" path="res://shaders/noise_spread.gdshader" id="1_b182b"]
 
@@ -23,11 +23,6 @@ shader_parameter/random_r = 0.5
 shader_parameter/random_g = 1.0
 shader_parameter/random_b = 0.0
 shader_parameter/random_a = 1.0
-shader_parameter/path = PackedVector2Array()
-shader_parameter/path_length = 0
-shader_parameter/path_follow_speed = 0.0
-shader_parameter/path_follow_stiffness = 0.0
-shader_parameter/point_distance_threshold = 1.0
 shader_parameter/use_random_seed = false
 shader_parameter/noise_influence_min = -3.0
 shader_parameter/noise_influence_max = 5.0
@@ -36,9 +31,9 @@ shader_parameter/noise_persistence = 0.0
 shader_parameter/noise_lacunarity = 0.0
 shader_parameter/noise_speed = Vector2(0, 0)
 
-[node name="NoiseSpread" type="Node2D"]
+[node name="NoiseSpread" type="Node2D" unique_id=447919636]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1504558208]
 amount = 100000
 lifetime = 7.0
 fixed_fps = 120

@@ -13,6 +13,5 @@ func _init_path() -> void:
 	_process_material.set_shader_parameter("path_length", _path.points.size());
 
 func _on_path_changed() -> void:
-	print("path changed");
 	_process_material.set_shader_parameter("path", _path.points);
 	_process_material.set_shader_parameter("path_length", _path.points.size());

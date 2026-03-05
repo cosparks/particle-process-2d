@@ -1,5 +1,29 @@
-// Configurable particle process shader -- include this file in separate shader and define macros for features you need
-// NOTE: This shader is a modified from automatically-converted Godot Engine 4.2.1 stable's ParticleProcessMaterial
+// Configurable particle process shader -- include this file in a separate shader and define macros for features you need
+// NOTE: This shader was taken and heavily modified from automatically-converted Godot Engine 4.2.1 stable's ParticleProcessMaterial
+
+/**************************************************************************/
+/* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
+/* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
+/*                                                                        */
+/* Permission is hereby granted, free of charge, to any person obtaining  */
+/* a copy of this software and associated documentation files (the        */
+/* "Software"), to deal in the Software without restriction, including    */
+/* without limitation the rights to use, copy, modify, merge, publish,    */
+/* distribute, sublicense, and/or sell copies of the Software, and to     */
+/* permit persons to whom the Software is furnished to do so, subject to  */
+/* the following conditions:                                              */
+/*                                                                        */
+/* The above copyright notice and this permission notice shall be         */
+/* included in all copies or substantial portions of the Software.        */
+/*                                                                        */
+/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,        */
+/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF     */
+/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. */
+/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY   */
+/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,   */
+/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE      */
+/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
+/**************************************************************************/
 
 render_mode disable_velocity;
 
@@ -244,18 +268,17 @@ vec3 get_noise_direction(vec3 pos) {
 #ifdef APPLY_NOISE
 // implementation of 2d improved perlin noise with murmur hash
 
-// implementation of MurmurHash
 int hash1(int x, int seed) {
 	const int m = 0x5bd1e995;
 	int hash = seed;
-	// 1
+
 	int k = x;
 	k *= m;
 	k ^= k >> 24;
 	k *= m;
 	hash *= m;
 	hash ^= k;
-	// mix
+
 	hash ^= hash >> 13;
 	hash *= m;
 	hash ^= hash >> 15;
@@ -265,21 +288,21 @@ int hash1(int x, int seed) {
 int hash2(ivec2 x, int seed){
     const int m = 0x5bd1e995;
     int hash = seed;
-    // 2
+
     int k = x.x;
     k *= m;
     k ^= k >> 24;
     k *= m;
     hash *= m;
     hash ^= k;
-    // 2
+
     k = x.y;
     k *= m;
     k ^= k >> 24;
     k *= m;
     hash *= m;
     hash ^= k;
-	// some final mixing
+
     hash ^= hash >> 13;
     hash *= m;
     hash ^= hash >> 15;
@@ -301,11 +324,9 @@ float interpolate(float v0, float v1, float v2, float v3, vec2 t) {
 }
 
 vec2 fade(vec2 t) {
-    // 6t^5 - 15t^4 + 10t^3
 	return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
 }
 
-// single octave 2d perlin noise
 float perlinNoise1(vec2 pos, int seed) {
 	vec2 floorPos = floor(pos);
 	ivec2 gridPos = ivec2(floorPos);
